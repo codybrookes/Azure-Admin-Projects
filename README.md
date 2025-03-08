@@ -6,52 +6,145 @@
 
 
 
-## Implement the Azure Iaas
+# Implement the Azure Iaas
+## Description
 
-#### 1. Create a virtual network in East & West US
-   
-a. Sign into Azure and go to virtual networks
+OSS Corporation is a globally distributed firm. They have their headquarters in the East US with another branch office in the WEST US. Currently, they are working on a project and decided that the application tier of this project will reside in one of its branch regions. For security reasons, OSS Corporation management is adamant on keeping their data tier in the headquarter region. 
 
-b. Under virtual networks click on create
+## Background of the problem statement:
+As an organization, they are open to suggestions and are currently evaluating Azure as a deployment platform. To prepare for the deployment of IaaS Standard_B1ms, OSS Corporation must deploy an IaaS v2 virtual network in the headquarters region for its database. But for the application, it should create another IaaS v2 virtual network in the branch region. In addition, because the communication between App and data should happen over a private channel, one needs to prepare their branch office virtual network for establishing connectivity to the headquarter’s IaaS v2 virtual network by creating a virtual network gateway and deploy a test IaaS Standard_B1ms VM to the virtual networks for verifying the connection.
+After the deployment team ensures the connectivity between both the networks, you can validate the same using Ping.
 
-c. In the basics tab - select the subscription -> create a new/ select an existing resource group-> Name the VN as VNET1 and select the region as East US
-Repeat steps to create for West US 
+## Following requirements should be met:
+Create virtual networks in the aforementioned region
+Create test virtual machines in both the virtual network
+Establish the connectivity between both the networks via VNet peering
+Ensure connectivity is established properly
 
-#### 2.	Create and test virtual machines in both networks 
-a.	In azure find virtual machines
 
-b.	Click create under virtual machines and select azure virtual machine
+Step 1)  Create two virtual networks
+Create the first virtual network in East US, 
+Resource Group Name: Osscorp 
+VNET Name: VNET1 
+Subnet Name: SN1 :10.104.00/24
+Location: East US
 
-c.	In the basics tab, select the correct subscription, then choose the correct resource group. Give it a name of VM1 and select East US. Choose windows server 2022 data center, leave everything else as default. 
+Create the second virtual network in West US, 
+Resource Group Name: Osscorpbranch 
+VNET Name: VNET2 
+Subnet Name: SN1 :198.162.0.0/24
+Location: West US 2 
 
-d.	Use admin account, provide a username, such as virtualmachineuser1 and a password. 
 
-e.	Inbound port rules – allow selected ports, select RDP then click next
 
-f.	Select OS Disk Type- Standard HDD then click next 
 
-g.	Under Networking select virtual network as VNET1 and its subnet, leave the remaining as default and select the review create button
 
-h.	After that hit the create button at the bottom of the page.
 
-Repeat steps to create for West US 
 
-#### 3.	Create the connectivity between both the networks using VNet Peering
-a.	Go to the virtual networks tab select VNET1
 
-b.	Then go to Peering Tab in VNET1
 
-c.	Click on add
- 
-d.	Click add and the peering is completed 
 
-#### 4.	Make sure connectivity is established properly 
-a.	Connect first VM by Native RDP 
- 
-b.	Connect second VM by Native RDP
- 
-c.	After the login, open windows defender firewall in both VM’s and in the advanced settings allow ICMP traffic in inbound rules 
- 
-d.	Now go to the command prompt on both VM’s by typing cmd and then type ipconfig to see the IP’s on both VM’s with each other by the Ping command.
- 
-e.	Both VM’s are able to ping each other. 
+
+
+
+
+Step 2) Create two virtual machines 
+Create first virtual machine in East US 
+Resource Group Name: Osscorp
+Virtual Machine Name: VM1
+OS Type: Windows Server 2022 Datacenter 
+Instance Size: Standard B1s
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Create first virtual machine in West US 
+Resource Group Name: Osscorpbranch
+Virtual Machine Name: VM2
+OS Type: Windows Server 2022 Datacenter 
+Instance Size: Standard B1s
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Step 3) Establish connectivity between networks via Peering
+Go to virtual networks tab 
+Go to VNET1 Peerings Tab 
+
+
+
+Click on add once set up 
+
+
+
+
+Now you have a peering set up: VNET1-VNET2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Step 4) Establish connection to both virtual machines - copy the public IP address in to remote desktop - then use the username and password to login 
+
+
+
+
+
+
+
+
+
+
+Go to Windows defender firewall in both VMs and then in Advanced Settings allow ICMP traffic in Inbound Rules
+
+
+
+
+
+
+Now we will go to the command prompt on both VM’s - then type ipconfig to check the ips 
+
+Try pinging the virtual machines using Ping (IP address of other vm) 
+
+
+
+
+
+Both VM’s are able to Ping each other
+
+
+
+
+
+
+
