@@ -27,13 +27,13 @@ Create the first virtual network in East US,
 Resource Group Name: Osscorp 
 VNET Name: VNET1 
 Subnet Name: SN1 :10.104.00/24
-Location: East US
+Location: East US    
 
 Create the second virtual network in West US, 
 Resource Group Name: Osscorpbranch 
 VNET Name: VNET2 
 Subnet Name: SN1 :198.162.0.0/24
-Location: West US 2 
+Location: West US 2     
 
 
 
@@ -53,7 +53,7 @@ Create first virtual machine in East US
 Resource Group Name: Osscorp
 Virtual Machine Name: VM1
 OS Type: Windows Server 2022 Datacenter 
-Instance Size: Standard B1s
+Instance Size: Standard B1s    
 
 
 
@@ -73,7 +73,7 @@ Create first virtual machine in West US
 Resource Group Name: Osscorpbranch
 Virtual Machine Name: VM2
 OS Type: Windows Server 2022 Datacenter 
-Instance Size: Standard B1s
+Instance Size: Standard B1s    
 
 
 
@@ -90,31 +90,19 @@ Instance Size: Standard B1s
 
 Step 3) Establish connectivity between networks via Peering
 Go to virtual networks tab 
-Go to VNET1 Peerings Tab 
+Go to VNET1 Peerings Tab     
 
 
 
-Click on add once set up 
-
-
-
-
-Now you have a peering set up: VNET1-VNET2
+Click on add once set up    
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-Step 4) Establish connection to both virtual machines - copy the public IP address in to remote desktop - then use the username and password to login 
+Now you have a peering set up: VNET1-VNET2    
+    
+    
+    
 
 
 
@@ -125,22 +113,34 @@ Step 4) Establish connection to both virtual machines - copy the public IP addre
 
 
 
-Go to Windows defender firewall in both VMs and then in Advanced Settings allow ICMP traffic in Inbound Rules
+
+Step 4) Establish connection to both virtual machines - copy the public IP address in to remote desktop - then use the username and password to login    
 
 
 
 
 
 
-Now we will go to the command prompt on both VM’s - then type ipconfig to check the ips 
-
-Try pinging the virtual machines using Ping (IP address of other vm) 
 
 
 
 
+Go to Windows defender firewall in both VMs and then in Advanced Settings allow ICMP traffic in Inbound Rules    
 
-Both VM’s are able to Ping each other
+
+
+
+
+
+Now we will go to the command prompt on both VM’s - then type ipconfig to check the ips     
+
+Try pinging the virtual machines using Ping (IP address of other vm)    
+
+
+
+
+
+Both VM’s are able to Ping each other    
 
 
 
